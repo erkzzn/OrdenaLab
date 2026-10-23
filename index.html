@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Laboratório interativo para aprender Bubble Sort e Insertion Sort passo a passo.">
+  <meta name="theme-color" content="#080b14">
+  <title>OrdenaLab — Laboratório de Algoritmos</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="OrdenaLab, início">
+        <span class="brand-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>ORDENA<span class="brand-accent">LAB</span><span class="brand-period">.</span></span>
+      </a>
+      <nav class="nav" aria-label="Menu principal">
+        <a href="#laboratorio">Laboratório</a>
+        <a href="#algoritmos">Algoritmos</a>
+        <a href="#sobre">Sobre</a>
+      </nav>
+      <span class="header-tag"><span class="status-dot"></span> PROJETO • ESTRUTURA DE DADOS</span>
+    </header>
+
+    <main>
+      <section id="inicio" class="hero" aria-labelledby="hero-title">
+        <div class="hero-orb" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> APRENDA NA PRÁTICA, PASSO A PASSO</div>
+          <h1 id="hero-title">Números em ordem.<br><span>Ideias em movimento.</span></h1>
+          <p>Explore como os algoritmos organizam informações. Insira seus números, escolha um método e acompanhe cada comparação e cada troca em tempo real.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#laboratorio">Explorar laboratório <span aria-hidden="true">↗</span></a>
+            <span class="hero-note"><span class="tiny-sparkle" aria-hidden="true">✦</span> Feito com HTML, CSS e JavaScript puro</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-art-tag">// processo de ordenação</div>
+          <div class="art-bars"><span style="--h:47%;--d:1"></span><span style="--h:78%;--d:2"></span><span style="--h:29%;--d:3"></span><span style="--h:62%;--d:4"></span><span style="--h:93%;--d:5"></span><span style="--h:37%;--d:6"></span><span style="--h:71%;--d:7"></span></div>
+          <div class="hero-art-bottom"><span>entrada [8, 3, 10, -2, 3, 1]</span><span class="art-green">ordem crescente ✓</span></div>
+        </div>
+      </section>
+
+      <section id="laboratorio" class="lab-section" aria-labelledby="lab-title">
+        <div class="section-head">
+          <div><div class="section-kicker">01 / EXPERIMENTE</div><h2 id="lab-title">Seu laboratório de ordenação<span class="title-dot">.</span></h2><p>Personalize os dados e veja o algoritmo trabalhar por dentro.</p></div>
+          <span class="section-badge"><span class="status-dot"></span> INTERATIVO</span>
+        </div>
+
+        <div class="lab-grid">
+          <section class="panel control-panel" aria-label="Configurações da ordenação">
+            <div class="panel-heading"><div class="panel-number">01</div><div><h3>Configuração</h3><p>Defina como organizar os números.</p></div></div>
+            <form id="sort-form" novalidate>
+              <div class="field"><label for="numbers-input">Sua sequência <span class="required-mark">*</span></label><p class="field-hint">Separe os números por vírgulas ou espaços.</p><textarea id="numbers-input" name="numeros" rows="3" spellcheck="false" aria-describedby="input-error" placeholder="Ex.: 8, 3, 10, -2, 3, 1">8, 3, 10, -2, 3, 1</textarea><p id="input-error" class="error-text" role="alert" hidden></p></div>
+              <fieldset class="field"><legend>Sentido da ordenação</legend><div class="direction-options"><label class="choice-pill"><input type="radio" name="direction" value="asc" checked><span><span aria-hidden="true">↑</span> Crescente</span></label><label class="choice-pill"><input type="radio" name="direction" value="desc"><span><span aria-hidden="true">↓</span> Decrescente</span></label></div></fieldset>
+              <div class="field"><label for="algorithm-select">Escolha o algoritmo</label><div class="select-wrap"><select id="algorithm-select" name="algoritmo"><option value="bubble">Bubble Sort • Trocas vizinhas</option><option value="insertion">Insertion Sort • Inserção</option></select><span aria-hidden="true">⌄</span></div><div class="algorithm-detail" id="algorithm-detail">Compara elementos lado a lado e troca aqueles que estiverem fora de ordem.</div></div>
+              <button id="start-button" class="btn btn-primary btn-wide" type="submit"><span aria-hidden="true">▶</span> Iniciar ordenação <span class="arrow-right" aria-hidden="true">↗</span></button>
+              <div class="secondary-actions"><button id="example-button" type="button">↻ Gerar exemplo</button><span class="action-divider"></span><button id="clear-button" type="button">✕ Limpar</button></div>
+            </form>
+            <div class="tip-box"><span class="tip-icon">✧</span><div><strong>Dica de uso</strong><p>Experimente valores negativos, repetidos ou números fora de ordem para entender as trocas.</p></div></div>
+          </section>
+
+          <section class="panel viewer-panel" aria-label="Visualizador da ordenação">
+            <div class="viewer-top"><div><div class="panel-label">VISUALIZAÇÃO AO VIVO</div><h3>O algoritmo em ação<span class="title-dot">.</span></h3></div><div class="viewer-state" id="viewer-state"><span class="state-indicator"></span><span id="state-label">Aguardando entrada</span></div></div>
+            <div class="stats-grid" aria-label="Estatísticas do algoritmo"><div class="stat"><span>COMPARAÇÕES</span><strong id="comparison-count">0</strong></div><div class="stat"><span>TROCAS</span><strong id="swap-count">0</strong></div><div class="stat"><span>PASSO ATUAL</span><strong id="step-count">0<span class="stat-suffix" id="total-steps"> / 0</span></strong></div></div>
+
+            <div class="chart-meta"><span class="chart-label">REPRESENTAÇÃO DOS VALORES</span><span class="chart-note"><span class="dot dot-purple"></span> Comparando &nbsp; <span class="dot dot-green"></span> Trocando</span></div>
+            <div class="chart-scroll" id="chart-scroll"><div id="bars" class="bars" role="img" aria-label="A visualização dos números aparecerá aqui"><div class="empty-state"><div class="empty-illustration" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><strong>Tudo pronto para começar</strong><p>Insira os dados e clique em “Iniciar ordenação”.</p></div></div></div>
+            <div class="playback"><div class="progress-heading"><strong id="current-action">Nenhuma execução iniciada</strong><span id="step-progress">0%</span></div><div class="progress-track" role="progressbar" aria-label="Progresso da ordenação" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track"><span id="progress-fill"></span></div><p class="action-detail" id="action-detail" aria-live="polite">Os passos de comparação e troca serão mostrados aqui.</p><div class="playback-controls"><div class="play-buttons"><button class="square-button" id="restart-button" type="button" title="Voltar ao início" aria-label="Voltar ao início" disabled>↶</button><button class="square-button" id="previous-button" type="button" title="Passo anterior" aria-label="Passo anterior" disabled>‹</button><button class="play-button" id="play-button" type="button" disabled><span id="play-icon">▶</span><span id="play-label">Reproduzir</span></button><button class="square-button" id="next-button" type="button" title="Próximo passo" aria-label="Próximo passo" disabled>›</button></div><div class="speed-control"><label for="speed-input">Velocidade</label><input type="range" id="speed-input" min="1" max="5" value="3" step="1" aria-label="Velocidade da animação"><span id="speed-value">3x</span></div></div></div>
+            <div class="timeline"><div class="timeline-title">HISTÓRICO RECENTE <span>• últimos 4 eventos</span></div><ol id="event-list" class="event-list"><li class="event-empty">Nenhum passo executado ainda.</li></ol></div>
+          </section>
+        </div>
+
+        <div class="results" aria-label="Comparação de entrada e saída"><div class="result-box"><div class="result-top"><div><span class="result-step">ENTRADA</span><h3>Sequência original</h3></div><span class="result-symbol">{ }</span></div><div class="result-values" id="original-result">—</div><div class="result-foot">Os números exatamente como você informou.</div></div><div class="result-connector" aria-hidden="true">→</div><div class="result-box result-output"><div class="result-top"><div><span class="result-step">SAÍDA</span><h3>Sequência ordenada</h3></div><span class="result-symbol result-check">✓</span></div><div class="result-values" id="sorted-result">—</div><div class="result-foot" id="result-foot">O resultado será exibido após a execução.</div></div></div>
+      </section>
+
+      <section id="algoritmos" class="learn-section" aria-labelledby="algorithms-title"><div class="section-head"><div><div class="section-kicker">02 / ENTENDA O CÓDIGO</div><h2 id="algorithms-title">Dois caminhos. Um objetivo<span class="title-dot">.</span></h2><p>Ambos colocam os mesmos números em ordem, mas com estratégias diferentes.</p></div></div><div class="info-grid"><article class="info-card"><div class="info-icon">⇅</div><div class="info-num">ALGORITMO 01</div><h3>Bubble Sort</h3><p>Percorre a lista comparando vizinhos. Quando um par está fora de ordem, faz a troca. A cada passagem, um dos valores chega à sua posição final.</p><div class="complexity"><span>PIOR CASO <strong>O(n²)</strong></span><span>MELHOR CASO <strong>O(n)</strong></span></div></article><article class="info-card"><div class="info-icon">↳</div><div class="info-num">ALGORITMO 02</div><h3>Insertion Sort</h3><p>Constrói uma parte ordenada da lista, inserindo cada novo número no lugar certo. Esta versão usa trocas entre vizinhos para tornar os movimentos visíveis.</p><div class="complexity"><span>PIOR CASO <strong>O(n²)</strong></span><span>MELHOR CASO <strong>O(n)</strong></span></div></article></div><p class="algorithm-note">Os métodos são implementados manualmente em JavaScript, sem usar <code>Array.sort()</code> para realizar a ordenação.</p></section>
+      <section id="sobre" class="about-section"><div><div class="section-kicker">03 / SOBRE O PROJETO</div><h2>Aprender é visualizar<br>o que acontece <em>por trás.</em></h2></div><div class="about-copy"><p>Projeto integrador da disciplina de <strong>Estrutura de Dados</strong>, do Curso Técnico em Informática. Desenvolvido para demonstrar comparações, trocas, validação e organização de sequências numéricas.</p><div class="about-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsivo</span></div></div></section>
+    </main>
+    <footer class="footer"><span class="footer-brand">ORDENA<span>LAB</span>.</span><span>Laboratório Interativo de Algoritmos de Ordenação</span><span>Curso Técnico em Informática • 2026</span></footer>
+  </div>
+</body>
+</html>
